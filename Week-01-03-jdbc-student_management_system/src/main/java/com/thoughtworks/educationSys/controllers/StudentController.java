@@ -30,9 +30,17 @@ public class StudentController {
   }
 
   @PostMapping("student/insert")
-  public Student insertStudent(@RequestBody Student student) {
-    System.out.println("insert" + student);
-    return studentRepository.save(student);
+  public String insertStudent(@RequestBody Student student) {
+    Optional<Student> studentInDatabase = studentRepository.findById(student.getName());
+    if (studentInDatabase.isPresent()) {
+      return "姓名重复";
+    }
+    studentRepository.insertNewStudent(student.getName(), student.getGender(), student.getKlass());
+    return String.format(
+        "添加成功, name:%s, gender:%s, class:%s",
+        student.getName(),
+        student.getGender(),
+        student.getKlass());
   }
 
   @PostMapping("student/delete/{name}")
