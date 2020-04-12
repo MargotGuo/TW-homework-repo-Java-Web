@@ -1,5 +1,6 @@
-package com.thoughtworks.educationSys.entities;
+package com.thoughtworks.educationSys.repository;
 
+import com.thoughtworks.educationSys.entities.Student;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
